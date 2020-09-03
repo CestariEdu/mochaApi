@@ -33,14 +33,14 @@ async function makeRequest(options) {
             }, data: body,
         } = resp;
         response = {
-            status,
-            statusText,
             request: {
                 url,
                 method,
                 headers,
                 requestBody,
             },
+            status,
+            statusText,
             body,
         };
     }, (error) => {
@@ -50,14 +50,14 @@ async function makeRequest(options) {
             }, response: { status, statusText, data: body },
         } = error;
         response = {
-            status,
-            statusText,
             request: {
                 url,
                 method,
                 headers,
                 requestBody,
             },
+            status,
+            statusText,
             body,
         };
     });
@@ -66,8 +66,13 @@ async function makeRequest(options) {
 
 function fixture(name) {
     let retorno = {};
-    // eslint-disable-next-line import/no-dynamic-require
-    retorno = require(`../fixture/${name}`);
+    if (process.env.ENV) {
+        // eslint-disable-next-line import/no-dynamic-require
+        retorno = require(`../fixture/${name}${process.env.ENV}`);
+    } else {
+        // eslint-disable-next-line import/no-dynamic-require
+        retorno = require(`../fixture/${name}HML`);
+    }
     return retorno;
 }
 
