@@ -12,8 +12,59 @@ async function validateQuerystring(options) {
     return options.data;
 }
 
+function errorHandle(error) {
+    const {
+        config: {
+            url,
+            method,
+            headers,
+            data: requestBody,
+        },
+        response: {
+            status,
+            statusText,
+            data: body,
+        },
+    } = error;
+    return {
+        request: {
+            url,
+            method,
+            headers,
+            requestBody,
+        },
+        status,
+        statusText,
+        body,
+    };
+}
+
+function successHandle(success) {
+    const {
+        status,
+        statusText,
+        config: {
+            url,
+            method,
+            headers,
+            data: requestBody,
+        },
+        data: body,
+    } = success;
+    return {
+        request: {
+            url,
+            method,
+            headers,
+            requestBody,
+        },
+        status,
+        statusText,
+        body,
+    };
+}
+
 async function makeRequest(options) {
-    let response;
     const def = options;
     def.httpsAgent = new https.Agent({ rejectUnauthorized: false });
     if (def.form === true) {
@@ -26,54 +77,22 @@ async function makeRequest(options) {
     } else if (def.headers) {
         def.data = await validateQuerystring(def);
     }
-    await axios(def).then((resp) => {
-        const {
-            status, statusText, config: {
-                url, method, headers, data: requestBody,
-            }, data: body,
-        } = resp;
-        response = {
-            request: {
-                url,
-                method,
-                headers,
-                requestBody,
-            },
-            status,
-            statusText,
-            body,
-        };
-    }, (error) => {
-        const {
-            config: {
-                url, method, headers, data: requestBody,
-            }, response: { status, statusText, data: body },
-        } = error;
-        response = {
-            request: {
-                url,
-                method,
-                headers,
-                requestBody,
-            },
-            status,
-            statusText,
-            body,
-        };
-    });
-    return response;
+    try {
+        const success = await axios(def);
+        return successHandle(success);
+    }
+    catch (error) {
+        return errorHandle(error);
+    }
 }
 
 function fixture(name) {
-    let retorno = {};
     if (process.env.ENV) {
         // eslint-disable-next-line import/no-dynamic-require
-        retorno = require(`../fixture/${name}${process.env.ENV}`);
-    } else {
-        // eslint-disable-next-line import/no-dynamic-require
-        retorno = require(`../fixture/${name}HML`);
+        return require(`../fixture/${name}${process.env.ENV}`);
     }
-    return retorno;
+    // eslint-disable-next-line import/no-dynamic-require
+    return require(`../fixture/${name}HML`);
 }
 
 module.exports = {
