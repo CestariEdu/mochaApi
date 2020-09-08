@@ -80,8 +80,7 @@ async function makeRequest(options) {
     try {
         const success = await axios(def);
         return successHandle(success);
-    }
-    catch (error) {
+    } catch (error) {
         return errorHandle(error);
     }
 }
