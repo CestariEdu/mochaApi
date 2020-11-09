@@ -2,46 +2,32 @@
 const fs = require('fs');
 const path = require('path');
 const Mocha = require('mocha');
+const glob = require('glob');
+const testDir = process.argv[2] ? process.argv[2] : './test/specs/**/*.spec.js';
 
 const mocha = new Mocha({
     diff: true,
     reporter: 'mochawesome',
     'reporter-options': [
         'reportFilename=mochawesome',
-        'consoleReporter=spec',
+        'consoleReporter=progress',
     ],
-    slow: 75,
-    timeout: 30000,
-    file: './test/helpers',
-    ui: 'bdd',
+    ui: 'bdd'
 });
 
-const testDir = process.argv[2] ? `./test/specs/${process.argv[2]}` : './test/specs/';
 
-if (process.argv[2]) {
-    if (process.argv[2].includes('.spec.js')) {
-        mocha.addFile(testDir);
-    } else {
-        fs.readdirSync(testDir).filter((file) => file.substr(-8) === '.spec.js').forEach((file) => {
-            mocha.addFile(
-                path.join(testDir, file),
-            );
-        });
+const files = glob.sync(testDir, {});
+
+files.forEach(file => {
+    if (file.includes('.spec.js')) {
+        mocha.addFile(file);
     }
-} else {
-    fs.readdirSync(testDir).forEach((file) => {
-        const dir = `${testDir}/${file}`;
-        fs.readdirSync(dir).filter((file) => file.substr(-8) === '.spec.js').forEach((file) => {
-            mocha.addFile(
-                path.join(dir, file),
-            );
-        });
-    });
-}
+});
 
 mocha.run((failures) => {
     let execResult;
     process.exitCode = 0;
+
     if (failures) {
         execResult = {
             status: 'Failure',
@@ -49,9 +35,10 @@ mocha.run((failures) => {
         };
     } else {
         execResult = {
-            status: 'Succes',
+            status: 'Success',
         };
     }
+
     const data = JSON.stringify(execResult);
     fs.writeFileSync('jenkinsResult.json', data);
 });
