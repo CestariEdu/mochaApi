@@ -5,7 +5,7 @@ const { makeRequest, fixture } = require('../../helpers/main');
 
 const fixtureBTC = fixture('bitcoin');
 
-describe('Test/Bitcoin exchange API', function() {
+describe('Test/Bitcoin exchange API', () => {
     const schema = Joi.array().items(Joi.object({
         id: Joi.string(),
         baseCurrency: Joi.string(),
@@ -19,7 +19,7 @@ describe('Test/Bitcoin exchange API', function() {
         maxInitialLeverage: Joi.string(),
     }));
 
-    it('Should return list of symbols', async function() {
+    it('Should return list of symbols', async function () {
         const res = await makeRequest({
             method: 'get',
             url: `${fixtureBTC.url}/api/2/public/symbol`,

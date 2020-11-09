@@ -30,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint ./cypress --fix; git add ."
+      "pre-commit": "npm run lint:fix; git add ."
     }
   }
 }
