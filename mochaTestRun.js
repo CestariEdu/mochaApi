@@ -1,24 +1,36 @@
 /* eslint-disable no-shadow */
 const fs = require('fs');
-const path = require('path');
 const Mocha = require('mocha');
 const glob = require('glob');
-const testDir = process.argv[2] ? process.argv[2] : './test/specs/**/*.spec.js';
+
+const args = process.argv[2];
+let testDir = '';
+
+if (args) {
+    if (args.includes('.spec.js')) {
+        testDir = args;
+    } else if (args[args.length - 1].indexOf('/') === -1) {
+        testDir = `${process.argv[2]}/*.spec.js`;
+    } else {
+        testDir = `${process.argv[2]}*.spec.js`;
+    }
+} else {
+    testDir = './test/specs/**/*.spec.js';
+}
 
 const mocha = new Mocha({
     diff: true,
     reporter: 'mochawesome',
     'reporter-options': [
         'reportFilename=mochawesome',
-        'consoleReporter=progress',
+        'consoleReporter=spec',
     ],
-    ui: 'bdd'
+    ui: 'bdd',
 });
-
 
 const files = glob.sync(testDir, {});
 
-files.forEach(file => {
+files.forEach((file) => {
     if (file.includes('.spec.js')) {
         mocha.addFile(file);
     }
