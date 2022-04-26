@@ -1,0 +1,460 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "required": [
+        "attributes",
+        "baby_trigger_for",
+        "category",
+        "cost",
+        "effect_entries",
+        "flavor_text_entries",
+        "fling_effect",
+        "fling_power",
+        "game_indices",
+        "held_by_pokemon",
+        "id",
+        "machines",
+        "name",
+        "names",
+        "sprites"
+    ],
+    "properties": {
+        "attributes": {
+            "$id": "#/properties/attributes",
+            "type": "array",
+            "title": "The attributes schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/attributes/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/attributes/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "name",
+                            "url"
+                        ],
+                        "properties": {
+                            "name": {
+                                "$id": "#/properties/attributes/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema"
+                            },
+                            "url": {
+                                "$id": "#/properties/attributes/items/anyOf/0/properties/url",
+                                "type": "string",
+                                "title": "The url schema"
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "baby_trigger_for": {
+            "$id": "#/properties/baby_trigger_for",
+            "type": "null",
+            "title": "The baby_trigger_for schema"
+        },
+        "category": {
+            "$id": "#/properties/category",
+            "type": "object",
+            "title": "The category schema",
+            "required": [
+                "name",
+                "url"
+            ],
+            "properties": {
+                "name": {
+                    "$id": "#/properties/category/properties/name",
+                    "type": "string",
+                    "title": "The name schema"
+                },
+                "url": {
+                    "$id": "#/properties/category/properties/url",
+                    "type": "string",
+                    "title": "The url schema"
+                }
+            },
+            "additionalProperties": true
+        },
+        "cost": {
+            "$id": "#/properties/cost",
+            "type": "integer",
+            "title": "The cost schema"
+        },
+        "effect_entries": {
+            "$id": "#/properties/effect_entries",
+            "type": "array",
+            "title": "The effect_entries schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/effect_entries/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/effect_entries/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "effect",
+                            "language",
+                            "short_effect"
+                        ],
+                        "properties": {
+                            "effect": {
+                                "$id": "#/properties/effect_entries/items/anyOf/0/properties/effect",
+                                "type": "string",
+                                "title": "The effect schema"
+                            },
+                            "language": {
+                                "$id": "#/properties/effect_entries/items/anyOf/0/properties/language",
+                                "type": "object",
+                                "title": "The language schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/effect_entries/items/anyOf/0/properties/language/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/effect_entries/items/anyOf/0/properties/language/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "short_effect": {
+                                "$id": "#/properties/effect_entries/items/anyOf/0/properties/short_effect",
+                                "type": "string",
+                                "title": "The short_effect schema"
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "flavor_text_entries": {
+            "$id": "#/properties/flavor_text_entries",
+            "type": "array",
+            "title": "The flavor_text_entries schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/flavor_text_entries/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/flavor_text_entries/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "language",
+                            "text",
+                            "version_group"
+                        ],
+                        "properties": {
+                            "language": {
+                                "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/language",
+                                "type": "object",
+                                "title": "The language schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/language/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/language/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "text": {
+                                "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/text",
+                                "type": "string",
+                                "title": "The text schema"
+                            },
+                            "version_group": {
+                                "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/version_group",
+                                "type": "object",
+                                "title": "The version_group schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/version_group/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/flavor_text_entries/items/anyOf/0/properties/version_group/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "fling_effect": {
+            "$id": "#/properties/fling_effect",
+            "type": "null",
+            "title": "The fling_effect schema"
+        },
+        "fling_power": {
+            "$id": "#/properties/fling_power",
+            "type": "integer",
+            "title": "The fling_power schema"
+        },
+        "game_indices": {
+            "$id": "#/properties/game_indices",
+            "type": "array",
+            "title": "The game_indices schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/game_indices/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/game_indices/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "game_index",
+                            "generation"
+                        ],
+                        "properties": {
+                            "game_index": {
+                                "$id": "#/properties/game_indices/items/anyOf/0/properties/game_index",
+                                "type": "integer",
+                                "title": "The game_index schema"
+                            },
+                            "generation": {
+                                "$id": "#/properties/game_indices/items/anyOf/0/properties/generation",
+                                "type": "object",
+                                "title": "The generation schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/game_indices/items/anyOf/0/properties/generation/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/game_indices/items/anyOf/0/properties/generation/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "held_by_pokemon": {
+            "$id": "#/properties/held_by_pokemon",
+            "type": "array",
+            "title": "The held_by_pokemon schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/held_by_pokemon/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/held_by_pokemon/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "pokemon",
+                            "version_details"
+                        ],
+                        "properties": {
+                            "pokemon": {
+                                "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/pokemon",
+                                "type": "object",
+                                "title": "The pokemon schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/pokemon/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/pokemon/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "version_details": {
+                                "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details",
+                                "type": "array",
+                                "title": "The version_details schema",
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items/anyOf/0",
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "required": [
+                                                "rarity",
+                                                "version"
+                                            ],
+                                            "properties": {
+                                                "rarity": {
+                                                    "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items/anyOf/0/properties/rarity",
+                                                    "type": "integer",
+                                                    "title": "The rarity schema"
+                                                },
+                                                "version": {
+                                                    "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items/anyOf/0/properties/version",
+                                                    "type": "object",
+                                                    "title": "The version schema",
+                                                    "required": [
+                                                        "name",
+                                                        "url"
+                                                    ],
+                                                    "properties": {
+                                                        "name": {
+                                                            "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items/anyOf/0/properties/version/properties/name",
+                                                            "type": "string",
+                                                            "title": "The name schema"
+                                                        },
+                                                        "url": {
+                                                            "$id": "#/properties/held_by_pokemon/items/anyOf/0/properties/version_details/items/anyOf/0/properties/version/properties/url",
+                                                            "type": "string",
+                                                            "title": "The url schema"
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "integer",
+            "title": "The id schema"
+        },
+        "machines": {
+            "$id": "#/properties/machines",
+            "type": "array",
+            "title": "The machines schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/machines/items"
+            }
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema"
+        },
+        "names": {
+            "$id": "#/properties/names",
+            "type": "array",
+            "title": "The names schema",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/names/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/names/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "required": [
+                            "language",
+                            "name"
+                        ],
+                        "properties": {
+                            "language": {
+                                "$id": "#/properties/names/items/anyOf/0/properties/language",
+                                "type": "object",
+                                "title": "The language schema",
+                                "required": [
+                                    "name",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/names/items/anyOf/0/properties/language/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema"
+                                    },
+                                    "url": {
+                                        "$id": "#/properties/names/items/anyOf/0/properties/language/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema"
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            "name": {
+                                "$id": "#/properties/names/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema"
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "sprites": {
+            "$id": "#/properties/sprites",
+            "type": "object",
+            "title": "The sprites schema",
+            "required": [
+                "default"
+            ],
+            "properties": {
+                "default": {
+                    "$id": "#/properties/sprites/properties/default",
+                    "type": "string",
+                    "title": "The default schema"
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}

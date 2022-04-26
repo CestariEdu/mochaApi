@@ -1,0 +1,78 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1649948023.json", 
+	"title": "Root", 
+	"type": "object",
+	"required": [
+		"count",
+		"next",
+		"previous",
+		"results"
+	],
+	"properties": {
+		"count": {
+			"$id": "#root/count", 
+			"title": "Count", 
+			"type": "integer",
+			"examples": [
+				1607
+			],
+			"default": 0
+		},
+		"next": {
+			"$id": "#root/next", 
+			"title": "Next", 
+			"type": "string",
+			"default": "",
+			"examples": [
+				"https://pokeapi.co/api/v2/item?offset=20&limit=20"
+			],
+			"pattern": "^.*$"
+		},
+		"previous": {
+			"$id": "#root/previous", 
+			"title": "Previous", 
+			"type": "null",
+			"default": null
+		},
+		"results": {
+			"$id": "#root/results", 
+			"title": "Results", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/results/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"name",
+					"url"
+				],
+				"properties": {
+					"name": {
+						"$id": "#root/results/items/name", 
+						"title": "Name", 
+						"type": "string",
+						"default": "",
+						"examples": [
+							"master-ball"
+						],
+						"pattern": "^.*$"
+					},
+					"url": {
+						"$id": "#root/results/items/url", 
+						"title": "Url", 
+						"type": "string",
+						"default": "",
+						"examples": [
+							"https://pokeapi.co/api/v2/item/1/"
+						],
+						"pattern": "^.*$"
+					}
+				}
+			}
+
+		}
+	}
+}
