@@ -1,6 +1,6 @@
 # MOCHA API
 
-Projeto de exemplo para teste de API Rest com Mocha e Axios. Utilizando o bdd como ui do mocha, Chai para validação dos resultados.
+Projeto de exemplo para teste de API Rest com Mocha, Chai e Axios.
 
 
 ## Instalação

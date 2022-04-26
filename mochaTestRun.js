@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-const fs = require('fs');
 const Mocha = require('mocha');
 const glob = require('glob');
 
@@ -10,12 +8,12 @@ if (args) {
     if (args.includes('.spec.js')) {
         testDir = args;
     } else if (args[args.length - 1].indexOf('/') === -1) {
-        testDir = `${process.argv[2]}/*.spec.js`;
+        testDir = `${process.argv[2]}*/**/*.spec.js`;
     } else {
         testDir = `${process.argv[2]}*.spec.js`;
     }
 } else {
-    testDir = './test/specs/**/*.spec.js';
+    testDir = './test/specs/**/**/*.spec.js';
 }
 
 const mocha = new Mocha({
@@ -26,6 +24,7 @@ const mocha = new Mocha({
         'consoleReporter=spec',
     ],
     ui: 'bdd',
+    timeout: 70000,
 });
 
 const files = glob.sync(testDir, {});
@@ -36,21 +35,8 @@ files.forEach((file) => {
     }
 });
 
-mocha.run((failures) => {
-    let execResult;
-    process.exitCode = 0;
-
-    if (failures) {
-        execResult = {
-            status: 'Failure',
-            totalFailures: failures,
-        };
-    } else {
-        execResult = {
-            status: 'Success',
-        };
+mocha.run((failure) => {
+    if (failure) {
+        process.exitCode = 1;
     }
-
-    const data = JSON.stringify(execResult);
-    fs.writeFileSync('jenkinsResult.json', data);
 });
